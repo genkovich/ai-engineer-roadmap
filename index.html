@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Engineer у 2027: карта навичок, самооцінка, порядок навчання</title>
+<meta name="description" content="Матеріали після ефіру «AI Engineer у 2027»: карта навичок за 64 вакансіями, самооцінка з 10 питань і порядок, у якому вчити навички.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F3EC; --panel:#FFFFFF; --panel-2:#EFEADF; --frame:#D9D2C3; --line:#8C8574;
+  --ink-0:#10151F; --ink:#1D2433; --ink-2:#3E4656; --dim:#6B6F7B;
+  --accent:#B7791F; --model:#6D4FC7; --code:#0F8A99; --ctx:#2F6BD8; --ok:#2E8B57; --err:#C8443A;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
+a{color:var(--code);text-decoration:none;border-bottom:1px solid rgba(15,138,153,.35)}
+b,strong{font-weight:700;color:var(--ink-0)}
+code{font-family:var(--mono);font-size:.9em;font-weight:500}
+.mono{font-family:var(--mono);font-weight:500;letter-spacing:0}
+.kicker{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--code)}
+.chip{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 10px;border-radius:10px;background:var(--accent);color:#fff;font-family:var(--mono);font-weight:700;font-size:18px;line-height:1;flex:none}
+.chip.sm{min-width:28px;height:28px;font-size:13px;border-radius:7px}
+.chip.ghost{background:var(--panel);color:var(--accent);border:2px solid var(--accent)}
+.pct{display:inline-block;font-family:var(--mono);font-weight:700;font-size:11.5px;color:var(--code);border:1.5px solid rgba(15,138,153,.45);border-radius:6px;padding:1px 6px;white-space:nowrap;vertical-align:middle}
+.pct.na{color:var(--dim);border-color:var(--frame)}
+.tag{display:inline-block;font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:2px 7px;white-space:nowrap}
+.tag.base{background:rgba(15,138,153,.1);color:var(--code)}
+.tag.rec{background:rgba(183,121,31,.13);color:var(--accent)}
+.tag.opt{background:rgba(107,111,123,.12);color:var(--dim)}
+.tag.ok{background:rgba(46,139,87,.12);color:var(--ok)}
+hr.rule{border:0;border-top:2px solid var(--frame);margin:0}
+
+/* ---- header ---- */
+header.cover{padding:40px 0 28px}
+.cover .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.cover .top .right{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em}
+.cover h1{font-weight:800;font-size:40px;line-height:1.02;letter-spacing:-.03em;color:var(--ink-0);max-width:700px}
+.cover h1 span{color:var(--accent)}
+.cover .lead{margin-top:18px;font-size:17px;color:var(--ink-2);max-width:680px}
+.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.promise a{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:2px solid var(--frame);border-radius:14px;padding:14px;color:var(--ink);border-bottom-width:2px}
+.promise a .pt{font-weight:700;font-size:15px;line-height:1.25;color:var(--ink-0)}
+.promise a .ps{font-size:12.5px;color:var(--dim);line-height:1.35}
+.sample{margin-top:22px;display:flex;gap:14px;align-items:flex-start;background:var(--panel-2);border-radius:12px;padding:14px 16px;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.sample .n{font-family:var(--mono);font-weight:700;font-size:28px;line-height:1;color:var(--ink-0);flex:none;padding-top:2px}
+.sample .n small{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:5px}
+
+/* ---- sections ---- */
+section.part{padding:36px 0 8px}
+.part-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:8px}
+.part-head h2{font-weight:800;font-size:30px;line-height:1.05;letter-spacing:-.025em;color:var(--ink-0)}
+.part-head .sub{color:var(--ink-2);margin-top:6px;font-size:15.5px;max-width:640px}
+.part-intro{color:var(--ink-2);margin:12px 0 0;max-width:680px}
+
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.role{background:var(--panel);border:2px solid var(--frame);border-radius:14px;padding:14px 14px 12px;position:relative}
+.role .rn{font-family:var(--mono);font-weight:700;font-size:11px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+.role h4{font-weight:700;font-size:15.5px;line-height:1.25;color:var(--ink-0);margin:6px 0 6px}
+.role p{font-size:13.5px;color:var(--ink-2);line-height:1.4}
+.role.hl{border-color:var(--accent)}
+.role .mark{position:absolute;top:12px;right:12px}
+.roles-note{margin-top:12px;font-size:14px;color:var(--ink-2);max-width:700px}
+
+/* skill map */
+.group{margin-top:26px}
+.group-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.group-head h3{font-weight:800;font-size:19px;letter-spacing:-.015em;color:var(--ink-0)}
+.group-head .gh-sub{font-size:13.5px;color:var(--dim)}
+.skill{display:grid;grid-template-columns:200px 1fr 1fr;gap:0 18px;background:var(--panel);border:1.5px solid var(--frame);border-radius:12px;padding:12px 16px;margin-bottom:8px;break-inside:avoid;page-break-inside:avoid}
+.skill .sn{font-weight:700;font-size:15px;color:var(--ink-0);line-height:1.3}
+.skill .sn .pct{margin-left:2px}
+.skill .sn .alias{display:block;font-family:var(--mono);font-weight:500;font-size:11px;color:var(--dim);margin-top:3px;letter-spacing:.02em}
+.skill .sd,.skill .ss{font-size:13.5px;line-height:1.42;color:var(--ink-2)}
+.skill .lbl{display:block;font-family:var(--mono);font-weight:700;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.skill .ss .lbl{color:var(--ok)}
+.aside{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.box{background:var(--panel-2);border-radius:14px;padding:16px 18px;break-inside:avoid;page-break-inside:avoid}
+.box h4{font-weight:800;font-size:15.5px;color:var(--ink-0);margin-bottom:8px;letter-spacing:-.01em}
+.box ul{list-style:none}
+.box li{position:relative;padding-left:16px;font-size:13.5px;color:var(--ink-2);line-height:1.42;margin-bottom:6px}
+.box li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--accent)}
+.box.c li::before{background:var(--code)}
+.box p{font-size:13.5px;color:var(--ink-2);line-height:1.42}
+
+/* questionnaire */
+.rule-box{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:2px solid var(--accent);border-radius:14px;padding:14px 16px;margin-top:18px;break-inside:avoid;page-break-inside:avoid}
+.rule-box .chip{margin-top:1px}
+.rule-box p{font-size:14.5px;color:var(--ink);line-height:1.45}
+.qlist{margin-top:18px;counter-reset:q}
+.q{background:var(--panel);border:1.5px solid var(--frame);border-radius:14px;padding:14px 16px 10px;margin-bottom:10px;break-inside:avoid;page-break-inside:avoid}
+.q .qh{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.q .qh .chip{min-width:34px;height:34px;font-size:15px;border-radius:9px}
+.q .qt{font-weight:700;font-size:15.5px;line-height:1.3;color:var(--ink-0);padding-top:5px}
+.q .qt .step{display:block;font-family:var(--mono);font-weight:500;font-size:10.5px;color:var(--dim);letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:7px 10px 7px 8px;border-radius:9px;border:1.5px solid transparent;cursor:pointer;font-size:14px;line-height:1.4;color:var(--ink-2);position:relative}
+.opt:hover{background:var(--bg)}
+.opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opt .v{flex:none;width:24px;height:24px;border-radius:7px;border:1.5px solid var(--frame);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:12px;color:var(--dim);background:var(--panel);margin-top:1px}
+.opt:has(input:checked){background:rgba(183,121,31,.08);border-color:var(--accent);color:var(--ink-0)}
+.opt:has(input:checked) .v{background:var(--accent);border-color:var(--accent);color:#fff}
+.opt input:focus-visible ~ .v{outline:2px solid var(--ctx);outline-offset:2px}
+.score{position:sticky;bottom:12px;margin-top:14px;background:var(--ink-0);color:#fff;border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:16px;box-shadow:0 12px 30px rgba(16,21,31,.22)}
+.score .sv{font-family:var(--mono);font-weight:700;font-size:30px;line-height:1;white-space:nowrap}
+.score .sv small{font-size:14px;color:#9A9384;margin-left:2px}
+.score .st{font-size:14px;line-height:1.35;color:#D6D8E8}
+.score .st b{color:#fff}
+.score .reset{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9A9384;background:none;border:1px solid #3E4656;border-radius:7px;padding:6px 10px;cursor:pointer}
+.result{margin-top:14px;display:none;background:var(--panel);border:2px solid var(--accent);border-radius:14px;padding:16px 18px;break-inside:avoid}
+.result.show{display:block}
+.result h4{font-weight:800;font-size:17px;color:var(--ink-0);margin-bottom:6px}
+.result p{font-size:14.5px;color:var(--ink-2);line-height:1.45}
+.key{margin-top:18px}
+.key h3{font-weight:800;font-size:19px;letter-spacing:-.015em;color:var(--ink-0);margin-bottom:10px}
+.bands{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.band{background:var(--panel);border:1.5px solid var(--frame);border-radius:12px;padding:14px 14px 12px;break-inside:avoid;page-break-inside:avoid}
+.band .bn{font-family:var(--mono);font-weight:700;font-size:20px;color:var(--accent);letter-spacing:-.02em}
+.band h4{font-weight:700;font-size:15px;color:var(--ink-0);margin:4px 0 6px;line-height:1.25}
+.band p{font-size:13.5px;color:var(--ink-2);line-height:1.42}
+.key-note{margin-top:12px;font-size:13.5px;color:var(--ink-2);background:var(--panel-2);border-radius:10px;padding:10px 14px}
+
+/* roadmap */
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center;font-size:12.5px;color:var(--dim)}
+.step{display:grid;grid-template-columns:48px 1fr;gap:0 16px;margin-top:22px;break-inside:avoid;page-break-inside:avoid}
+.step .rail{display:flex;flex-direction:column;align-items:center;gap:8px}
+.step .rail .ln{width:2px;flex:1;background:var(--frame);border-radius:1px;min-height:20px}
+.step .body{background:var(--panel);border:1.5px solid var(--frame);border-radius:14px;padding:14px 18px 14px}
+.step .sh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.step h3{font-weight:800;font-size:19px;letter-spacing:-.015em;color:var(--ink-0);line-height:1.2}
+.step .why{margin-top:6px;font-size:14px;color:var(--ink-2);line-height:1.45}
+.step .cols{display:grid;grid-template-columns:1.25fr 1fr;gap:14px 20px;margin-top:12px}
+.step h5{font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.step .topics{list-style:none}
+.step .topics li{position:relative;padding-left:14px;font-size:13.5px;color:var(--ink-2);line-height:1.4;margin-bottom:4px}
+.step .topics li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:2px;background:var(--code)}
+.step .topics li em{font-style:normal;color:var(--ink-0);font-weight:600}
+.step .proof{display:flex;flex-direction:column;gap:10px}
+.step .proof div{font-size:13.5px;line-height:1.4;color:var(--ink-2)}
+.step .proof h5.ex{color:var(--accent)}
+.step .proof h5.done{color:var(--ok)}
+.step .res{margin-top:12px;padding-top:10px;border-top:1.5px dashed var(--frame);font-size:12.5px;color:var(--dim);line-height:1.45}
+.step .res b{color:var(--ink-2);font-weight:600}
+.step .res .lbl{font-family:var(--mono);font-weight:700;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;margin-right:6px}
+.portfolio{margin-top:26px;background:var(--ink-0);color:#fff;border-radius:16px;padding:20px 22px;break-inside:avoid;page-break-inside:avoid}
+.portfolio .kicker{color:#5BC0CB}
+.portfolio h3{font-weight:800;font-size:21px;letter-spacing:-.02em;margin:6px 0 10px;color:#fff}
+.portfolio ol{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.portfolio li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.4;color:#D6D8E8}
+.portfolio li b{color:#fff;display:block;margin-bottom:3px}
+.portfolio p{margin-top:12px;font-size:13px;color:#9A9384;line-height:1.45}
+footer{padding:28px 0 40px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.04em}
+.print-only{display:none}
+
+/* ---- phone ---- */
+@media (max-width:640px){
+  body{font-size:15px}
+  header.cover{padding:28px 0 20px}
+  .cover h1{font-size:31px}
+  .promise,.roles,.bands,.portfolio ol{grid-template-columns:1fr}
+  .skill{grid-template-columns:1fr;gap:8px}
+  .aside{grid-template-columns:1fr}
+  .step{grid-template-columns:36px 1fr;gap:0 10px}
+  .step .chip{min-width:36px;height:36px;font-size:15px}
+  .step .cols{grid-template-columns:1fr}
+  .step .body{padding:12px 14px}
+  .part-head h2{font-size:26px}
+  .score{flex-wrap:wrap}
+  .score .reset{margin-left:0}
+}
+
+/* ---- print / PDF ---- */
+@page{size:A4;margin:13mm 13mm 15mm}
+@media print{
+  html,body{background:var(--bg);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-size:10pt;line-height:1.42}
+  .wrap{max-width:none;padding:0}
+  a{border-bottom:0;color:inherit}
+  header.cover{padding:4mm 0 5mm}
+  .cover .top{margin-bottom:7mm}
+  .cover h1{font-size:28pt}
+  .cover .lead{font-size:11pt;margin-top:4mm}
+  .promise{margin-top:6mm}
+  .promise a{padding:10px 12px;gap:8px}
+  .promise a .pt{font-size:10.5pt}
+  .promise a .ps{font-size:8.6pt}
+  .sample{margin-top:6mm;font-size:9pt}
+  section.part{padding:0}
+  section.part#self,section.part#route{break-before:page;page-break-before:always}
+  section.part#map{padding-top:6mm}
+  .part-head{padding-top:2mm}
+  .group-head{break-after:avoid;page-break-after:avoid}
+  .group.tight{break-inside:avoid;page-break-inside:avoid}
+  .part-head h2{font-size:21pt}
+  .part-head .sub{font-size:10.5pt}
+  .part-intro{font-size:10pt}
+  .roles{margin-top:5mm}
+  .role p,.roles-note{font-size:8.8pt}
+  .role{padding:10px 12px 9px}
+  .roles-note{margin-top:8px}
+  .role h4{font-size:10.5pt}
+  .group{margin-top:5mm}
+  .group-head h3{font-size:13pt}
+  .group-head .gh-sub{font-size:9pt}
+  .skill{padding:7px 11px;margin-bottom:4px;grid-template-columns:140px 1.3fr 1fr;gap:0 12px;border-radius:9px}
+  .skill .sn{font-size:9.6pt}
+  .skill .sn .alias{font-size:7.4pt}
+  .skill .sd,.skill .ss{font-size:8.5pt;line-height:1.34}
+  .skill .lbl{font-size:6.8pt;margin-bottom:1px}
+  .pct{font-size:7.8pt}
+  .aside{margin-top:5mm}
+  .box{padding:10px 13px}
+  .box h4{font-size:10.5pt}
+  .box li,.box p{font-size:8.8pt}
+  .rule-box{margin-top:4mm;padding:9px 12px}
+  .rule-box p{font-size:9.6pt}
+  .qlist{margin-top:4mm}
+  .q{padding:6px 11px 4px;margin-bottom:3px;border-radius:9px}
+  .q .qh{margin-bottom:2px}
+  .opts{gap:0}
+  .rule-box{margin-top:3mm}
+  .qlist{margin-top:3mm}
+  .q .qh .chip{min-width:26px;height:26px;font-size:11pt;border-radius:7px}
+  .q .qt{font-size:10pt;padding-top:3px}
+  .q .qt .step{font-size:7.2pt}
+  .opts{gap:1px}
+  .opt{padding:1px 6px 1px 4px;font-size:8.8pt;line-height:1.32}
+  .opt .v{width:17px;height:17px;font-size:8pt;border-radius:5px;margin-top:1px}
+  .opt:has(input:checked){background:none;border-color:transparent;color:var(--ink-2)}
+  .opt:has(input:checked) .v{background:var(--panel);border-color:var(--frame);color:var(--dim)}
+  .score,.result,.no-print{display:none !important}
+  .print-only{display:block}
+  .key{margin-top:5mm}
+  .key h3{font-size:13pt}
+  .band{padding:9px 11px 7px}
+  .bands{gap:7px}
+  .key-note{margin-top:7px;padding:7px 11px}
+  .band .bn{font-size:14pt}
+  .band h4{font-size:10pt}
+  .band p,.key-note{font-size:8.8pt}
+  .legend{font-size:8.6pt;margin-top:3mm}
+  .step{margin-top:2.4mm;grid-template-columns:30px 1fr;gap:0 9px}
+  .step .chip{min-width:30px;height:30px;font-size:13px;border-radius:8px}
+  .step .rail .ln{min-height:10px}
+  .step .body{padding:6px 11px 6px;border-radius:9px}
+  .step h3{font-size:11pt}
+  .step .why{font-size:8.3pt;margin-top:2px;line-height:1.35}
+  .step .cols{margin-top:3px;gap:4px 14px;grid-template-columns:1.3fr 1fr}
+  .step .topics li,.step .proof div{font-size:8.1pt;line-height:1.3;margin-bottom:1px}
+  .step .topics li::before{top:6px;width:5px;height:5px}
+  .step .proof{gap:5px}
+  .step h5{font-size:6.8pt;margin-bottom:1px}
+  .step .res{margin-top:4px;padding-top:3px;font-size:7.6pt;line-height:1.35}
+  .legend{margin-top:1.5mm;gap:6px}
+  #route .part-head .sub{font-size:9.8pt;margin-top:3px}
+  .key-note{break-inside:avoid;page-break-inside:avoid}
+  .portfolio{margin-top:4mm;padding:11px 13px}
+  .portfolio h3{font-size:13pt;margin:3px 0 7px}
+  .portfolio li{font-size:8.4pt;padding:7px 9px}
+  .portfolio p{font-size:8.2pt;margin-top:7px}
+  .portfolio ol{gap:8px}
+  footer{padding:5mm 0 0;font-size:7.8pt}
+  .step-break{break-before:page;page-break-before:always}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="top">
+    <div class="kicker">AI Engineer у 2027 · після ефіру</div>
+    <div class="right">25.11.2026 · матеріали для учасників</div>
+  </div>
+  <h1>Карта навичок, самооцінка і <span>порядок навчання</span></h1>
+  <p class="lead">Три речі з останнього слайда ефіру. Карта показує, чого вимагають вакансії. Самооцінка показує, де на цій карті ви зараз. Маршрут показує, в якому порядку закривати прогалини, і для кожного кроку дає вправу, за якою це можна перевірити.</p>
+
+  <div class="promise">
+    <a href="#map"><span class="chip">01</span><span class="pt">Карта навичок AI Engineer</span><span class="ps">Чотири групи, частка вакансій і ознака, що навичка у вас є</span></a>
+    <a href="#self"><span class="chip">02</span><span class="pt">Самооцінка з 10 питань</span><span class="ps">Три варіанти відповіді на кожне, сума від 0 до 20 і що з нею робити</span></a>
+    <a href="#route"><span class="chip">03</span><span class="pt">Порядок, у якому вчити</span><span class="ps">Вісім кроків: що вчити, вправа, критерій «готово» і де читати</span></a>
+  </div>
+
+  <div class="sample">
+    <div class="n">64<small>вакансії</small></div>
+    <div>Усі відсотки в документі пораховано за вибіркою з 64 вакансій: 42 українські з DOU і Djinni та 22 закордонні з карʼєрних сторінок компаній. Зібрано в листопаді 2026 за один день, кожну вакансію прочитано повністю й розмічено вручну. Тему зараховували, якщо її згадано будь-де у вимогах, разом із nice-to-have, тож відсоток показує, скільки вакансій про неї пишуть. Вибірка невелика, і за місяць цифри будуть інші: дивіться на порядок величин, не на одиниці.</div>
+  </div>
+</header>
+
+<hr class="rule">
+
+<!-- ========================= 01 ========================= -->
+<section class="part" id="map">
+  <div class="part-head">
+    <span class="chip">01</span>
+    <div>
+      <h2>Карта навичок AI Engineer</h2>
+      <p class="sub">Вісім вимог з вакансій плюс база, яку бекендер уже має. Для кожної: що це, в якій частці з 64 вакансій згадано і за чим зрозуміти, що навичка у вас справді є.</p>
+    </div>
+  </div>
+
+  <p class="part-intro">Спершу про те, кого саме ринок називає AI Engineer, бо від цього залежить, яка частина карти ваша. Під одним словом ховаються три різні роботи.</p>
+
+  <div class="roles">
+    <div class="role">
+      <div class="rn">Роль 1</div>
+      <h4>Розробник з асистентом</h4>
+      <p>Код пишете самі, асистент підказує. Роботу з Claude Code, Cursor чи подібними інструментами окремо згадують лише 16% вакансій: це вже базовий мінімум, який мають на увазі й не пишуть.</p>
+    </div>
+    <div class="role hl">
+      <span class="mark tag rec">вхід у професію</span>
+      <div class="rn">Роль 2</div>
+      <h4>Інженер, який пише софт з агентами</h4>
+      <p>Ви ставите задачу, даєте контекст і перевіряєте результат, код пише агент. Годиться для будь-якого коду, навіть без LLM у проді. Саме цей метод перевіряють на співбесідах.</p>
+    </div>
+    <div class="role">
+      <div class="rn">Роль 3</div>
+      <h4>Інженер AI-фіч у продукті</h4>
+      <p>Вбудовує модель у продукт: сервіс, який викликає модель, з тестами для її відповідей і логами кожного кроку. Саме цю роль ринок найчастіше й називає AI Engineer.</p>
+    </div>
+  </div>
+  <p class="roles-note">Карта нижче охоплює другу і третю ролі разом, бо той, хто будує AI-фічі, сам пише код з агентами. Групи «База» і «Як ви працюєте» потрібні обом ролям, групи «Що ви будуєте» і «Прод» стосуються третьої.</p>
+
+  <!-- group A -->
+  <div class="group">
+    <div class="group-head"><h3>База</h3><span class="gh-sub">те, що бекендер уже вміє, і з чого стартує не з нуля</span></div>
+    <div class="skill">
+      <div class="sn">Класична інженерія <span class="pct">100%</span><span class="alias">Python або TypeScript, API, тести, Git</span></div>
+      <div class="sd"><span class="lbl">що це</span>Звичайна розробка сервісів. Стоїть у кожній вакансії вибірки, зокрема й у тих, де далі суцільні LLM-терміни. Python у 39 з 42 українських вакансій, у світових Python і TypeScript порівну.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Ви робили сервіс, який живе в проді, писали до нього тести й проходили ревʼю коду в команді.</div>
+    </div>
+    <div class="skill">
+      <div class="sn">LLM API <span class="pct">83%</span><span class="alias">виклик моделі з коду</span></div>
+      <div class="sd"><span class="lbl">що це</span>Інтеграція з API моделі (OpenAI, Anthropic, Gemini, Bedrock тощо) як із будь-якою зовнішньою залежністю: з ретраями, лімітами запитів (rate limiting) і запасним варіантом на випадок відмови (fallback).</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Ваш код викликає модель у проді, а відмова чи затримка API не валить сервіс.</div>
+    </div>
+    <div class="skill">
+      <div class="sn">Деплой і CI/CD <span class="pct">75%</span><span class="alias">cloud, Docker, пайплайн</span></div>
+      <div class="sd"><span class="lbl">що це</span>Викотити сервіс у прод і автоматизувати перевірки перед релізом. Нове лише одне: у пайплайн додаються перевірки агентів і AI-кроки, наприклад крок ревʼю, без якого зміна не проходить далі.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Ваш сервіс викочується пайплайном, а не руками, і хоча б один крок у CI запускає перевірку з участю моделі.</div>
+    </div>
+  </div>
+
+  <!-- group B -->
+  <div class="group tight">
+    <div class="group-head"><h3>Як ви працюєте</h3><span class="gh-sub">метод роботи з агентами, потрібен обом ролям</span></div>
+    <div class="skill">
+      <div class="sn">Пайплайн розробки з агентами <span class="pct na">без %</span><span class="alias">spec-first, test-first with coding agents</span></div>
+      <div class="sd"><span class="lbl">що це</span>Цикл від вимог до релізу, де агент виконує етап (пише код, ганяє тести), а рішення ухвалює людина. Спершу специфікація й тест, потім агент пише код. У розмітці окремої теми для цього не було, тому без відсотка; у вакансіях це вимагають і від сеньйора, і від джуна.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Остання задача зі спринту: спека і тест були до коду, код написав агент, а його диф ви прочитали як чужий пул-реквест, перш ніж мерджити.</div>
+    </div>
+    <div class="skill">
+      <div class="sn">Контекст <span class="pct">55%</span><span class="alias">prompt / context engineering, structured outputs</span></div>
+      <div class="sd"><span class="lbl">що це</span>Що саме модель бачить у контекстному вікні: інструкції, задача, код, результати тулів. Решти для неї не існує, а місце міряють токенами, ними ж рахують ціну. Сюди ж належать structured outputs: відповідь моделі у форматі за схемою.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>У вашому CLAUDE.md чи AGENTS.md лишилось тільки те, без чого агент помиляється, решта в окремих файлах правил, і ви знаєте, скільки токенів це займає.</div>
+    </div>
+  </div>
+
+  <!-- group C -->
+  <div class="group">
+    <div class="group-head"><h3>Що ви будуєте</h3><span class="gh-sub">AI-фічі в продукті, територія третьої ролі</span></div>
+    <div class="skill">
+      <div class="sn">Агенти, tool use і MCP <span class="pct">92%</span><span class="alias">59 з 64 вакансій</span></div>
+      <div class="sd"><span class="lbl">що це</span>Агент: цикл, у якому модель просить викликати функцію, ваш код виконує її й повертає результат, і так до кінця задачі. Tool use (інакше function calling) і є цей механізм. MCP: протокол, через який агент підключає інструменти й дані. Найчастіша тема після класичної інженерії.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Ви писали цикл агента руками, без фреймворку, і підняли хоча б один MCP-сервер до реального API, яким самі користуєтесь.</div>
+    </div>
+    <div class="skill">
+      <div class="sn">Оркестрація <span class="pct">61%</span><span class="alias">ланцюжок, роутинг, людина перед дією</span></div>
+      <div class="sd"><span class="lbl">що це</span>Розкласти роботу на кроки й керувати ними з коду: вихід одного кроку йде на вхід наступного з перевіркою між ними. Сюди ж підтвердження людини перед діями, що щось змінюють (human-in-the-loop), і права агента, обрізані на рівні доступів, а не лише в промпті. Безпеку, guardrails і HITL згадують 39% вакансій.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Коли щось ламається, ви бачите, на якому кроці. Жодна дія агента, що пише в систему, не проходить без «ок» від людини або без перевірки в коді.</div>
+    </div>
+    <div class="skill">
+      <div class="sn">RAG <span class="pct">66%</span><span class="alias">83% українських вакансій, 32% світових</span></div>
+      <div class="sd"><span class="lbl">що це</span>Модель відповідає на основі ваших даних, яких не було в її навчанні: знаходимо потрібні шматки документів і кладемо їх у промпт разом із питанням. Складається з двох частин, пошуку й генерації, і міряти їх треба окремо.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>На вашому RAG дві метрики: recall@k для пошуку (яка частка потрібних документів потрапила в перші k результатів) і частка правильних відповідей для генерації.</div>
+    </div>
+    <div class="skill">
+      <div class="sn">Evals <span class="pct">66%</span><span class="alias">64% українських, 68% світових</span></div>
+      <div class="sd"><span class="lbl">що це</span>Регресійні тести для відповідей моделі. Golden dataset, тобто набір еталонних запитів з очікуваними відповідями, проганяють після кожної зміни промпту. Відповідь щоразу трохи інша, тому перевіряють стабільне: чи є потрібний факт, чи викликано правильний тул, чи формат відповідає схемі.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Є набір на 10-20 кейсів і прогін у CI, який не пускає зміну промпту в мердж, якщо щось зламалось.</div>
+    </div>
+  </div>
+
+  <!-- group D -->
+  <div class="group tight">
+    <div class="group-head"><h3>Прод</h3><span class="gh-sub">те, що відрізняє LLM-сервіс від звичайного після деплою</span></div>
+    <div class="skill">
+      <div class="sn">Observability <span class="pct">53%</span><span class="alias">трейси, моніторинг у проді</span></div>
+      <div class="sd"><span class="lbl">що це</span>Бачити кожен крок агента в проді: запис кожного промпту, виклику тула й рішення моделі (трейси), щоб будь-який прогін можна було відтворити й розібрати.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Коли агент учора зробив щось дивне, ви за хвилину знаходите в логах, що саме він бачив і який тул викликав.</div>
+    </div>
+    <div class="skill">
+      <div class="sn">Вартість і latency <span class="pct">39%</span><span class="alias">токени, швидкість відповіді, ціна інфраструктури</span></div>
+      <div class="sd"><span class="lbl">що це</span>Скільки коштує один прогін і скільки триває відповідь. Вакансії формулюють це як три осі оптимізації: якість, latency і вартість.</div>
+      <div class="ss"><span class="lbl">ознака, що вмієте</span>Ви можете назвати ціну одного прогону вашого агента чи фічі з кількості токенів, не чекаючи рахунку наприкінці місяця.</div>
+    </div>
+  </div>
+
+  <div class="aside">
+    <div class="box">
+      <h4>Чого в карті немає, і чому</h4>
+      <ul>
+        <li><b>Класичний ML: 27%.</b> Це переважно українські вакансії (36% проти 9% у світі), де роль AI Engineer змішано з ML Engineer. У 36% українських вакансій з назвою AI Engineer є вимоги з класичного ML: PyTorch, тренування моделей, feature engineering.</li>
+        <li><b>Fine-tuning: 25%.</b> Згадують рідко, здебільшого як бажане.</li>
+        <li><b>Сертифікати, Kaggle, наукові статті:</b> у вибірці не зустрілись. Ринок просить результат: хоча б один AI-воркфлоу чи система, що працює в проді або CI без щоденного нагляду.</li>
+        <li><b>Дві теми поруч із картою:</b> дані і SQL (53%) та комунікація з бізнесом (53%; у світових вакансіях 68%, бо там більше ролей, вбудованих у команду клієнта).</li>
+      </ul>
+    </div>
+    <div class="box c">
+      <h4>Як читати вакансію за 30 секунд</h4>
+      <ul>
+        <li>Назву пропускайте, читайте дієслова в обовʼязках.</li>
+        <li><b>train, fine-tune, drift detection</b> (тренувати, донавчати, стежити за деградацією моделі): ML-роль з LLM на додачу. Туди йдіть свідомо.</li>
+        <li><b>tool calling, evals, structured outputs, production:</b> AI Engineer, хоч як би вакансію назвали.</li>
+        <li>Слово «agentic» саме по собі нічого не гарантує: буває інфраструктура для агентів без жодної LLM-вимоги.</li>
+        <li>Питання рекрутеру на першому дзвінку: «Що лежатиме в репо наприкінці мого першого спринту: ваги моделі, ноутбук чи сервіс?»</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= 02 ========================= -->
+<section class="part" id="self">
+  <div class="part-head">
+    <span class="chip">02</span>
+    <div>
+      <h2>Самооцінка з 10 питань: де ви зараз</h2>
+      <p class="sub">Питання йдуть у тому ж порядку, що й кроки маршруту в розділі 03. У кожному три варіанти, вони дають 0, 1 або 2 бали. Обирайте той, що описує, як ви робили насправді, а не як знаєте, що треба.</p>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <span class="chip ghost sm">!</span>
+    <p><b>«Вмію» означає «робив на реальній задачі»,</b> де щось могло зламатись і, швидше за все, ламалось. Прочитали статтю, подивились доповідь, слухали цей ефір: поки що це 0 балів. Крім вас, результат ніхто не перевірятиме, тому вигравати тут нема в кого.</p>
+  </div>
+
+  <form class="qlist" id="quiz" autocomplete="off">
+
+    <div class="q">
+      <div class="qh"><span class="chip">1</span><div class="qt">Як ви робили останню задачу зі спринту?<span class="step">→ крок 1 · метод роботи з агентами</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q1" value="0"><span class="v">0</span><span>Писав код сам. Асистент хіба підказував рядки, або не користувався ним узагалі.</span></label>
+        <label class="opt"><input type="radio" name="q1" value="1"><span class="v">1</span><span>Просив агента написати код з опису задачі, потім правив за ним руками, поки не запрацювало.</span></label>
+        <label class="opt"><input type="radio" name="q1" value="2"><span class="v">2</span><span>Спершу написав специфікацію і тест, код написав агент, а його диф я прочитав як чужий пул-реквест.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">2</span><div class="qt">Що лежить у вашому файлі інструкцій для агента (CLAUDE.md, AGENTS.md чи подібному)?<span class="step">→ крок 2 · контекст</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q2" value="0"><span class="v">0</span><span>Файлу немає, або я не знаю, навіщо він.</span></label>
+        <label class="opt"><input type="radio" name="q2" value="1"><span class="v">1</span><span>Є, і туди дописується все, що колись пішло не так. Він росте, і скільки токенів займає, я не знаю.</span></label>
+        <label class="opt"><input type="radio" name="q2" value="2"><span class="v">2</span><span>Лише те, без чого агент помиляється. Решта в окремих файлах правил, які він читає за потреби, і я знаю, скільки токенів це коштує.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">3</span><div class="qt">Поясніть tool use кодом: як модель викликає функцію?<span class="step">→ крок 3 · агенти і MCP</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q3" value="0"><span class="v">0</span><span>Поясню словами, кодом не покажу.</span></label>
+        <label class="opt"><input type="radio" name="q3" value="1"><span class="v">1</span><span>Збирав агента на фреймворку (LangChain, LangGraph, Agent SDK), цикл усередині фреймворку бачив лише в документації.</span></label>
+        <label class="opt"><input type="radio" name="q3" value="2"><span class="v">2</span><span>Писав цикл руками: модель повертає «виклич цю функцію з такими аргументами», мій код виконує й віддає результат назад, і так до кінця задачі.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">4</span><div class="qt">Ваш досвід з MCP, протоколом підключення інструментів до агента.<span class="step">→ крок 3 · агенти і MCP</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q4" value="0"><span class="v">0</span><span>Чув назву, розшифрувати зможу.</span></label>
+        <label class="opt"><input type="radio" name="q4" value="1"><span class="v">1</span><span>Підключав готові MCP-сервери до Claude Code, Cursor чи іншого клієнта.</span></label>
+        <label class="opt"><input type="radio" name="q4" value="2"><span class="v">2</span><span>Написав власний MCP-сервер до API, яким користуюся в роботі, наприклад до трекера задач, і агент ним реально працює.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">5</span><div class="qt">Як ваш код спілкується з моделлю?<span class="step">→ крок 4 · LLM API і structured outputs</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q5" value="0"><span class="v">0</span><span>Тільки через чат у браузері або через інструмент, який усе робить за мене.</span></label>
+        <label class="opt"><input type="radio" name="q5" value="1"><span class="v">1</span><span>Викликав API в скрипті чи пет-проєкті, відповідь розбирав як текст.</span></label>
+        <label class="opt"><input type="radio" name="q5" value="2"><span class="v">2</span><span>У проді: відповідь приходить за схемою (structured outputs), є ретраї, ліміти запитів і запасний варіант на випадок відмови API.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">6</span><div class="qt">Як ви дізнаєтесь, що ваш RAG ламається, і де саме: у пошуку чи в генерації?<span class="step">→ крок 5 · RAG</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q6" value="0"><span class="v">0</span><span>RAG не збирав.</span></label>
+        <label class="opt"><input type="radio" name="q6" value="1"><span class="v">1</span><span>Збирав, якість оцінюю на око: читаю відповіді й дивлюся, чи схоже на правду.</span></label>
+        <label class="opt"><input type="radio" name="q6" value="2"><span class="v">2</span><span>Міряю окремо: recall@k для пошуку і частку правильних відповідей для генерації, тож по цифрах видно, яка частина винна.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">7</span><div class="qt">Ви поправили промпт під один кейс. Як дізнаєтесь, що решта не зламалась?<span class="step">→ крок 6 · evals</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q7" value="0"><span class="v">0</span><span>Прокликаю кілька запитів руками, решту дізнаюся від користувачів.</span></label>
+        <label class="opt"><input type="radio" name="q7" value="1"><span class="v">1</span><span>Є набір еталонних кейсів, проганяю його руками час від часу.</span></label>
+        <label class="opt"><input type="radio" name="q7" value="2"><span class="v">2</span><span>Golden dataset проганяється в CI після кожної зміни промпту і блокує мердж, якщо впали перевірки.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">8</span><div class="qt">Як виглядає найбільша LLM-логіка, яку ви тримаєте в проді?<span class="step">→ крок 7 · оркестрація</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q8" value="0"><span class="v">0</span><span>Один великий промпт. Коли ламається, не видно, на якому кроці.</span></label>
+        <label class="opt"><input type="radio" name="q8" value="1"><span class="v">1</span><span>Розкладено на кроки в коді, між кроками перевірки, наступний крок обирає код або модель свідомо.</span></label>
+        <label class="opt"><input type="radio" name="q8" value="2"><span class="v">2</span><span>Кроки з перевірками, а ще: дії, що щось змінюють, чекають на підтвердження людини, і ключ агента фізично не має прав на те, чого йому не можна.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">9</span><div class="qt">Агент учора зробив у проді щось дивне. Що ви можете побачити сьогодні?<span class="step">→ крок 8 · прод: трейси</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q9" value="0"><span class="v">0</span><span>Нічого: логів від LLM-частини немає, або сервісу в проді ще немає.</span></label>
+        <label class="opt"><input type="radio" name="q9" value="1"><span class="v">1</span><span>Фінальну відповідь моделі в логах, без проміжних кроків.</span></label>
+        <label class="opt"><input type="radio" name="q9" value="2"><span class="v">2</span><span>Кожен промпт, кожен виклик тула й кількість токенів. Прогін можна відтворити й знайти, де він пішов не туди.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">10</span><div class="qt">Скільки коштує один прогін вашого агента чи AI-фічі?<span class="step">→ крок 8 · прод: вартість і latency</span></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q10" value="0"><span class="v">0</span><span>Не знаю.</span></label>
+        <label class="opt"><input type="radio" name="q10" value="1"><span class="v">1</span><span>Знаю приблизно, за рахунком наприкінці місяця.</span></label>
+        <label class="opt"><input type="radio" name="q10" value="2"><span class="v">2</span><span>Рахую з токенів на кожному прогоні, бачу latency і знаю, який крок найдорожчий.</span></label>
+      </div>
+    </div>
+  </form>
+
+  <div class="score no-print" id="score" aria-live="polite">
+    <div class="sv"><span id="sum">0</span><small>/ 20</small></div>
+    <div class="st" id="stxt">Відповіли на <b id="cnt">0</b> з 10. Результат зʼявиться після десятого питання.</div>
+    <button type="button" class="reset" id="reset">скинути</button>
+  </div>
+  <div class="result" id="result"></div>
+
+  <div class="key">
+    <h3>Як читати суму</h3>
+    <div class="bands">
+      <div class="band">
+        <div class="bn">0-7</div>
+        <h4>Початок карти: починайте з методу</h4>
+        <p>Це нормальний результат, для цього й збирались. Не вчіть усе одразу. Беріть кроки 1 і 2 маршруту: метод роботи з агентами і контекст. Тренувати їх можна вже завтра на будь-якій задачі зі спринту, LLM у проді для цього не потрібен. Решту карти поки не чіпайте.</p>
+      </div>
+      <div class="band">
+        <div class="bn">8-14</div>
+        <h4>Середина карти: закривайте першу прогалину</h4>
+        <p>Важить не сума, а перше питання згори, де у вас 0 чи 1. Біля кожного питання вказано крок маршруту: беріть його вправу і закривайте тільки цю прогалину, бажано на робочій задачі, щоб результат було кому перевірити. Потім наступне питання.</p>
+      </div>
+      <div class="band">
+        <div class="bn">15-20</div>
+        <h4>Навички є, бракує доказів</h4>
+        <p>Ви робили майже все з карти. Тепер це треба показати. Збирайте портфоліо з трьох артефактів, які вакансії просять дослівно: репо з evals і трейсами, MCP-сервер до чогось корисного і розбір інциденту, як ваш агент зламався і як ви це знайшли. Список у кінці розділу 03.</p>
+      </div>
+    </div>
+    <p class="key-note"><b>Сума потрібна лише для орієнтиру.</b> Порядок навчання визначає перший незакритий пункт згори, бо кожен наступний крок маршруту спирається на попередні. Якщо на одному кроці два питання (3 і 4, 9 і 10), прогалиною вважайте нижчий бал з двох.</p>
+  </div>
+</section>
+
+<!-- ========================= 03 ========================= -->
+<section class="part" id="route">
+  <div class="part-head">
+    <span class="chip">03</span>
+    <div>
+      <h2>Порядок, у якому вчити навички</h2>
+      <p class="sub">Маршрут по карті згори вниз: від того, як ви працюєте з агентом, до системи, що живе в проді. Кожен крок має вправу, за якою його можна зарахувати собі, і критерій «готово».</p>
+    </div>
+  </div>
+  <div class="legend">
+    <span class="tag rec">вправа</span><span>зробити руками після ефіру</span>
+    <span class="tag ok">готово, коли</span><span>критерій, щоб зарахувати крок</span>
+    <span class="tag base">де читати</span><span>лише офіційна документація і першоджерела</span>
+  </div>
+
+  <!-- step 1 -->
+  <div class="step">
+    <div class="rail"><span class="chip">1</span><span class="ln"></span></div>
+    <div class="body">
+      <div class="sh"><h3>Метод роботи з агентами: задача, контекст, перевірка</h3><span class="pct na">без %</span></div>
+      <p class="why"><b>Чому першим.</b> Цей метод уже вимагають у вакансіях для розробників, від сеньйора і навіть від джуна, саме його перевіряють на співбесідах, і тренувати його можна з завтрашнього дня на будь-якій задачі зі спринту, без LLM у проді. Усе далі в маршруті ви робитимете цим же методом.</p>
+      <div class="cols">
+        <div>
+          <h5>що вчити</h5>
+          <ul class="topics">
+            <li><em>Постановка задачі.</em> Специфікація до коду: що має робити зміна, що ні, як це перевірити.</li>
+            <li><em>Test-first.</em> Тест пишеться до того, як агент бере задачу, інакше його «готово» нема з чим порівняти.</li>
+            <li><em>Ревʼю дифа агента</em> як чужого пул-реквесту, перш ніж мерджити. Код, прийнятий не читаючи, це vibe coding.</li>
+            <li><em>Розподіл відповідальності.</em> AI пише реалізацію, людина відповідає за архітектуру, якість і правильність. У проді падає ваш сервіс.</li>
+          </ul>
+        </div>
+        <div class="proof">
+          <div><h5 class="ex">вправа</h5>Наступна задача зі спринту: спершу спека і тест, код пише агент. Диф читаєте й правите як чуже.</div>
+          <div><h5 class="done">готово, коли</h5>Ви можете показати три задачі поспіль, де спека і тест були до коду, а диф агента пройшов ваше ревʼю і мердж без переписування руками.</div>
+        </div>
+      </div>
+      <div class="res"><span class="lbl tag base">де читати</span><b>Документація Claude Code</b> (docs.claude.com), розділи про CLAUDE.md і робочий цикл · <b>Addy Osmani, «Agentic Engineering»</b> (addyosmani.com), стаття про розподіл відповідальності між людиною й агентом.</div>
+    </div>
+  </div>
+
+  <!-- step 2 -->
+  <div class="step">
+    <div class="rail"><span class="chip">2</span><span class="ln"></span></div>
+    <div class="body">
+      <div class="sh"><h3>Контекст: що саме бачить модель</h3><span class="pct">55%</span></div>
+      <p class="why"><b>Чому тут.</b> Агент знає лише те, що лежить у контекстному вікні, і місце там обмежене. Типова хвороба після першого кроку: файл інструкцій, у який кожен дописує своє, поки він не зʼїсть місце для задачі й коду. Без цього кроку метод працює в одному репо і ламається в іншому.</p>
+      <div class="cols">
+        <div>
+          <h5>що вчити</h5>
+          <ul class="topics">
+            <li><em>Контекстне вікно і токени.</em> Що в ньому лежить: інструкції, задача, код, результати тулів. Токенами міряють місце і ціну.</li>
+            <li><em>Файли інструкцій</em> CLAUDE.md і AGENTS.md: свідомі й token-aware, тобто з розумінням, скільки токенів вони займають.</li>
+            <li><em>Правила за потреби.</em> Окремі файли (як писати тести, як ходити в базу), які агент читає лише коли треба.</li>
+            <li><em>Довга сесія.</em> Як не губити контекст, коли задача не вкладається в одну розмову.</li>
+          </ul>
+        </div>
+        <div class="proof">
+          <div><h5 class="ex">вправа</h5>Відкрийте свій CLAUDE.md і лишіть тільки те, без чого агент помиляється. Решту винесіть в окремі файли правил. Файлу ще немає: створіть його з пʼяти рядків, як запустити проєкт і тести.</div>
+          <div><h5 class="done">готово, коли</h5>Ви знаєте, скільки токенів займають ваші інструкції, і можете пояснити, навіщо кожен рядок. Агент проходить типову задачу у вашому репо без повторних пояснень того, що вже написано у файлі.</div>
+        </div>
+      </div>
+      <div class="res"><span class="lbl tag base">де читати</span><b>Anthropic, «Effective context engineering for AI agents»</b> (anthropic.com/engineering) · <b>Документація Claude, розділ Prompt engineering</b> (docs.claude.com).</div>
+    </div>
+  </div>
+
+  <!-- step 3 -->
+  <div class="step">
+    <div class="rail"><span class="chip">3</span><span class="ln"></span></div>
+    <div class="body">
+      <div class="sh"><h3>Агенти, tool use і MCP</h3><span class="pct">92%</span></div>
+      <p class="why"><b>Чому тут.</b> Найчастіша тема після класичної інженерії, 59 з 64 вакансій. Ви вже працюєте з агентом як користувач; час зібрати його зсередини. Після циклу, написаного руками, фреймворки LangGraph і Agent SDK перестають бути магією.</p>
+      <div class="cols">
+        <div>
+          <h5>що вчити</h5>
+          <ul class="topics">
+            <li><em>Цикл агента.</em> Модель повертає «виклич цю функцію з такими аргументами», ваш код виконує й віддає результат, і так, поки модель не скаже, що закінчила. Сама вона нічого не виконує.</li>
+            <li><em>Опис тулів.</em> Назва, призначення, схема аргументів: від якості опису залежить, чи модель обере правильний інструмент.</li>
+            <li><em>MCP.</em> Протокол, через який агент підключає інструменти й дані: сервер віддає тули, клієнт (Claude Code, Cursor та інші) їх викликає.</li>
+            <li><em>Фреймворки після механіки.</em> LangGraph, Agent SDK: що вони додають до циклу і за що беруть складність.</li>
+          </ul>
+        </div>
+        <div class="proof">
+          <div><h5 class="ex">вправа</h5>Напишіть цикл агента руками, без фреймворку, з трьома тулами. Потім один MCP-сервер до свого робочого API, наприклад до трекера задач.</div>
+          <div><h5 class="done">готово, коли</h5>Ваш агент розвʼязує задачу з кількох кроків, обираючи тули сам, а ваш MCP-сервер підключений до клієнта, яким ви користуєтесь щодня, і реально працює.</div>
+        </div>
+      </div>
+      <div class="res"><span class="lbl tag base">де читати</span><b>Документація Claude, розділ Tool use</b> (docs.claude.com) · <b>Специфікація і документація MCP</b> (modelcontextprotocol.io) · <b>Anthropic, «Building effective agents»</b> (anthropic.com/research).</div>
+    </div>
+  </div>
+
+  <!-- step 4 -->
+  <div class="step">
+    <div class="rail"><span class="chip">4</span><span class="ln"></span></div>
+    <div class="body">
+      <div class="sh"><h3>LLM API у проді і structured outputs</h3><span class="pct">83%</span></div>
+      <p class="why"><b>Чому тут.</b> Це бекендерська територія, тому крок короткий: інтеграція з моделлю як із будь-якою зовнішньою залежністю, тільки відповідь щоразу трохи інша. Без надійного виклику й відповіді за схемою неможливо будувати RAG і evals далі.</p>
+      <div class="cols">
+        <div>
+          <h5>що вчити</h5>
+          <ul class="topics">
+            <li><em>Виклик моделі з коду</em> з ретраями, лімітами запитів (rate limiting) і запасним варіантом на випадок відмови (fallback).</li>
+            <li><em>Structured outputs.</em> Відповідь у форматі за схемою, яку ваш код розбирає без евристик і регулярних виразів.</li>
+            <li><em>Токени і ціна.</em> API повертає кількість токенів на кожен виклик: з неї рахується вартість, і її варто логувати з першого дня.</li>
+            <li><em>Вибір моделі</em> під задачу: де вистачить дешевшої й швидшої, а де потрібна сильніша.</li>
+          </ul>
+        </div>
+        <div class="proof">
+          <div><h5 class="ex">вправа</h5>Ендпоінт, який приймає текст тікета і повертає JSON за схемою: тип, пріоритет, чернетка відповіді. З ретраями й fallback.</div>
+          <div><h5 class="done">готово, коли</h5>Відповідь завжди валідна за схемою, відмова чи затримка API не валить сервіс, а в логах видно кількість токенів кожного виклику.</div>
+        </div>
+      </div>
+      <div class="res"><span class="lbl tag base">де читати</span><b>Документація Claude API</b> (docs.claude.com) · <b>Документація OpenAI API</b> (platform.openai.com/docs), зокрема розділ Structured Outputs.</div>
+    </div>
+  </div>
+
+  <!-- step 5 -->
+  <div class="step">
+    <div class="rail"><span class="chip">5</span><span class="ln"></span></div>
+    <div class="body">
+      <div class="sh"><h3>RAG: пошук і генерацію міряємо окремо</h3><span class="pct">66%</span></div>
+      <p class="why"><b>Чому тут.</b> В українських вакансіях RAG стоїть у 83%, у світових у 32%: якщо цілитесь на наш ринок, без нього не обійтись. Тепер у вас є надійний виклик і структурована відповідь, можна додати до них власні дані.</p>
+      <div class="cols">
+        <div>
+          <h5>що вчити</h5>
+          <ul class="topics">
+            <li><em>Пайплайн.</em> Завантаження документів, нарізка на шматки (chunking), embeddings і векторний пошук, збирання промпту зі знайденого разом із питанням.</li>
+            <li><em>Дві частини, дві метрики.</em> Пошук: recall@k, яка частка потрібних документів потрапила в перші k результатів. Генерація: чи відповідь правильна і чи спирається на знайдене.</li>
+            <li><em>Три осі оптимізації:</em> якість, latency і вартість. Покращення однієї зазвичай коштує іншої.</li>
+          </ul>
+        </div>
+        <div class="proof">
+          <div><h5 class="ex">вправа</h5>Найпростіший RAG на документації власного проєкту з двома метриками замість однієї. Свій RAG уже є: заведіть на ньому другу метрику.</div>
+          <div><h5 class="done">готово, коли</h5>По цифрах видно, що ламається: пошук чи генерація. Ви можете пояснити своїми словами, що означає recall@5 = 0,75 (з чотирьох потрібних документів у топ-5 потрапили три, один модель не побачила взагалі).</div>
+        </div>
+      </div>
+      <div class="res"><span class="lbl tag base">де читати</span><b>Документація OpenAI, розділ Embeddings</b> (platform.openai.com/docs) · <b>Anthropic, «Introducing Contextual Retrieval»</b> (anthropic.com/news), про те, як не губити контекст при нарізці документів.</div>
+    </div>
+  </div>
+
+  <!-- step 6 -->
+  <div class="step">
+    <div class="rail"><span class="chip">6</span><span class="ln"></span></div>
+    <div class="body">
+      <div class="sh"><h3>Evals: golden dataset на кожну зміну промпту</h3><span class="pct">66%</span></div>
+      <p class="why"><b>Чому тут.</b> Єдина тема, де український і світовий ринки збігаються: 64% і 68%. Без evals правка промпту під один кейс ламає решту, і ви дізнаєтесь про це від користувачів. Далі маршрут веде до оркестрації й проду, а туди без регресійних тестів заходити не варто.</p>
+      <div class="cols">
+        <div>
+          <h5>що вчити</h5>
+          <ul class="topics">
+            <li><em>Golden dataset.</em> Еталонні запити з очікуваними відповідями, 10-20 кейсів для початку.</li>
+            <li><em>Що перевіряти.</em> Відповідь щоразу трохи інша, тому перевіряють стабільне: чи є потрібний факт, чи викликано правильний тул, чи формат відповідає схемі.</li>
+            <li><em>Регресійний прогін</em> після кожної зміни промпту, у CI, з блокуванням мерджу.</li>
+            <li><em>Модель як суддя.</em> Коли критерій не вкладається в точну перевірку, відповідь оцінює інша модель за чіткою інструкцією; її саму теж треба перевіряти на еталонах.</li>
+          </ul>
+        </div>
+        <div class="proof">
+          <div><h5 class="ex">вправа</h5>10-20 кейсів, скрипт приблизно на 50 рядків, прогін у CI вашого проєкту з кроку 4 або 5.</div>
+          <div><h5 class="done">готово, коли</h5>Зміна промпту без зеленого прогону не мерджиться, і ви перевіряєте агента не на око.</div>
+        </div>
+      </div>
+      <div class="res"><span class="lbl tag base">де читати</span><b>Документація Claude, розділ про критерії успіху та емпіричні evals</b> (docs.claude.com) · <b>Документація OpenAI, розділ Evals</b> (platform.openai.com/docs).</div>
+    </div>
+  </div>
+
+  <!-- step 7 -->
+  <div class="step">
+    <div class="rail"><span class="chip">7</span><span class="ln"></span></div>
+    <div class="body">
+      <div class="sh"><h3>Оркестрація і підтвердження людини перед дією</h3><span class="pct">61%</span> <span class="pct">безпека і HITL 39%</span></div>
+      <p class="why"><b>Чому тут.</b> Оркестрація потрібна, коли одного промпту вже мало. Розкладати великий промпт на кроки безпечно лише з evals у руках, інакше не зрозуміти, чи стало краще. Сюди ж належить питання, як зробити, щоб агент не наробив біди в проді.</p>
+      <div class="cols">
+        <div>
+          <h5>що вчити</h5>
+          <ul class="topics">
+            <li><em>Пʼять патернів</em> з «Building effective agents»: ланцюжок (вихід кроку йде на вхід наступного з перевіркою між ними), роутинг (запит іде в потрібну гілку), паралелізація, оркестратор з виконавцями, оцінювач з оптимізатором.</li>
+            <li><em>Де агент, а де пайплайн.</em> У ланцюжку наступний крок вирішує код, в агента модель. Шукайте найпростіше рішення, яке працює.</li>
+            <li><em>Human-in-the-loop.</em> Читати агент може сам, дії, що щось змінюють (створити тікет, надіслати лист), чекають на «ок» від людини.</li>
+            <li><em>Права, а не промпт.</em> Слабкий варіант: заборона в інструкції. Сильний: ключ доступу агента фізично не має прав на цю дію.</li>
+          </ul>
+        </div>
+        <div class="proof">
+          <div><h5 class="ex">вправа</h5>Візьміть один свій великий промпт і розкладіть на три кроки з перевіркою між ними. Свого немає: «прочитай тікет, визнач тип, напиши відповідь». Потім пройдіться по тулах агента, позначте ті, що пишуть, і поставте перед ними підтвердження в коді.</div>
+          <div><h5 class="done">готово, коли</h5>Коли щось ламається, видно, на якому кроці. Жодна дія, що щось змінює, не проходить без підтвердження, і evals з кроку 6 після рефакторингу не впали.</div>
+        </div>
+      </div>
+      <div class="res"><span class="lbl tag base">де читати</span><b>Anthropic, «Building effective agents»</b> (anthropic.com/research): патерни оркестрації і принцип найпростішого рішення.</div>
+    </div>
+  </div>
+
+  <!-- step 8 -->
+  <div class="step">
+    <div class="rail"><span class="chip">8</span></div>
+    <div class="body">
+      <div class="sh"><h3>Прод: деплой, трейси, вартість</h3><span class="pct">деплой 75%</span> <span class="pct">observability 53%</span> <span class="pct">вартість 39%</span></div>
+      <p class="why"><b>Чому останнім.</b> Деплой ви вже вмієте, тут додаються лише трейси і ціна прогону. Крок стоїть останнім, бо саме тут усе попереднє збирається в систему, яка працює в проді або CI без щоденного нагляду. Це той результат, якого вакансії просять замість сертифікатів.</p>
+      <div class="cols">
+        <div>
+          <h5>що вчити</h5>
+          <ul class="topics">
+            <li><em>Трейси.</em> Запис кожного промпту, виклику тула й рішення моделі, щоб будь-який прогін можна було відтворити.</li>
+            <li><em>Вартість і latency.</em> Кількість токенів на прогін і час відповіді як метрики, за якими стежать так само, як за помилками.</li>
+            <li><em>AI-кроки в CI/CD.</em> Перевірки агентів у пайплайні, наприклад крок ревʼю, без якого зміна не проходить далі.</li>
+            <li><em>Безпека в проді.</em> Що агент може зачепити, якщо піде не туди, і як це обмежено доступами з кроку 7.</li>
+          </ul>
+        </div>
+        <div class="proof">
+          <div><h5 class="ex">вправа</h5>Увімкніть трейси і рахуйте ціну прогону з першого дня. Для початку досить писати в лог кожен промпт, кожен виклик тула і кількість токенів, яку повертає API.</div>
+          <div><h5 class="done">готово, коли</h5>Будь-який прогін можна відтворити по логах і назвати його ціну. Хоча б один ваш AI-воркфлоу працює в проді або в CI без щоденного нагляду.</div>
+        </div>
+      </div>
+      <div class="res"><span class="lbl tag base">де читати</span><b>OpenTelemetry</b> (opentelemetry.io), стандарт трейсів, на який спираються інструменти для LLM · <b>Документація GitHub Actions</b> (docs.github.com), якщо ваш CI там.</div>
+    </div>
+  </div>
+
+  <div class="portfolio">
+    <div class="kicker">Коли карта закрита</div>
+    <h3>Три артефакти у відкритий доступ</h3>
+    <ol>
+      <li><b>Репо з evals і трейсами.</b> Видно, що ви перевіряєте агента не на око.</li>
+      <li><b>MCP-сервер до чогось корисного.</b> Трекер задач чи база, якою самі користуєтесь.</li>
+      <li><b>Розбір інциденту.</b> Як ваш агент чи фіча зламались у проді і як ви це знайшли. Проду ще немає: розберіть поломку у власному пет-проєкті.</li>
+    </ol>
+    <p>Саме такі артефакти вакансії просять дослівно: багаторазові skills, промпти, схеми тулів, набори evals, MCP-сервери і хоча б один інцидент, про який ви можете розповісти. Метод роботи з агентами, з якого починається цей маршрут, детально розбирається на курсі Agentic Engineering.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Кирило Сулімовський · ефір «AI Engineer у 2027» · 25.11.2026</span>
+  <span>Вибірка: 64 вакансії, листопад 2026</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var form=document.getElementById('quiz');
+  if(!form)return;
+  var sum=document.getElementById('sum'),cnt=document.getElementById('cnt'),stxt=document.getElementById('stxt'),res=document.getElementById('result');
+  var bands=[
+    {max:7,n:'0-7',h:'Початок карти: починайте з методу',p:'Це нормальний результат, для цього й збирались. Не вчіть усе одразу. Беріть кроки 1 і 2 маршруту: метод роботи з агентами і контекст. Тренувати їх можна вже завтра на будь-якій задачі зі спринту, LLM у проді для цього не потрібен. Решту карти поки не чіпайте.'},
+    {max:14,n:'8-14',h:'Середина карти: закривайте першу прогалину',p:'Важить не сума, а перше питання згори, де у вас 0 чи 1. Беріть вправу з відповідного кроку маршруту і закривайте тільки цю прогалину, бажано на робочій задачі, щоб результат було кому перевірити. Потім наступне питання.'},
+    {max:20,n:'15-20',h:'Навички є, бракує доказів',p:'Ви робили майже все з карти. Тепер це треба показати: репо з evals і трейсами, MCP-сервер до чогось корисного і розбір інциденту, як ваш агент зламався і як ви це знайшли. Список у кінці розділу 03.'}
+  ];
+  var stepOf={q1:'1',q2:'2',q3:'3',q4:'3',q5:'4',q6:'5',q7:'6',q8:'7',q9:'8',q10:'8'};
+  function titleOf(q){var t=form.querySelector('[name='+q+']').closest('.q').querySelector('.qt');return t.childNodes[0].textContent.trim();}
+  function update(){
+    var total=0,answered=0,firstGap=null;
+    for(var i=1;i<=10;i++){
+      var sel=form.querySelector('input[name=q'+i+']:checked');
+      if(sel){answered++;var v=+sel.value;total+=v;if(firstGap===null&&v<2)firstGap='q'+i;}
+    }
+    sum.textContent=total;cnt.textContent=answered;
+    if(answered<10){
+      stxt.innerHTML='Відповіли на <b>'+answered+'</b> з 10. Результат зʼявиться після десятого питання.';
+      res.classList.remove('show');return;
+    }
+    var b=bands.find(function(x){return total<=x.max;});
+    stxt.innerHTML='<b>'+b.n+' · '+b.h+'</b>';
+    var gap='';
+    if(firstGap){gap='<p style="margin-top:8px"><b>Перша прогалина згори:</b> питання '+firstGap.slice(1)+' («'+titleOf(firstGap)+'»). Це крок '+stepOf[firstGap]+' маршруту в розділі 03: починайте з його вправи.</p>';}
+    else{gap='<p style="margin-top:8px"><b>Жодної прогалини.</b> Переходьте до трьох артефактів у кінці розділу 03.</p>';}
+    res.innerHTML='<div class="kicker">ваш результат · '+total+' з 20</div><h4>'+b.h+'</h4><p>'+b.p+'</p>'+gap;
+    res.classList.add('show');
+  }
+  form.addEventListener('change',update);
+  document.getElementById('reset').addEventListener('click',function(){form.reset();update();});
+  update();
+})();
+</script>
+</body>
+</html>
