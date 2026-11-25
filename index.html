@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Роадмап AI Engineer у 2027: навички в порядку навчання</title>
-<meta name="description" content="Візуальний роадмап після ефіру «AI Engineer у 2027»: десять навичок у порядку навчання, окреме дерево тем для кожної, самооцінка з 10 питань. Відсотки за вибіркою з 64 вакансій, листопад 2026.">
+<meta name="description" content="Візуальний роадмап після ефіру «AI Engineer у 2027»: десять навичок у порядку навчання, окреме дерево тем для кожної з перевіреними ресурсами, упорядкований список що читати, самооцінка з 10 питань.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%273%27 y=%273%27 width=%2726%27 height=%2726%27 rx=%276%27 fill=%27%23FFD84D%27 stroke=%27%232A2825%27 stroke-width=%273%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,6 @@
   .skills-grid .n{font-family:var(--mono);font-weight:700;font-size:13px;width:30px;height:30px;border-radius:8px;background:var(--accent);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;flex:none}
   .skills-grid b{display:block;font-size:15px}
   .skills-grid small{display:block;font-size:12.5px;color:var(--dim);margin-top:1px}
-  .skills-grid .pct{margin-left:auto}
   .portfolio{background:var(--ink);color:#fff;border-radius:16px;padding:22px 24px;margin-top:14px}
   .portfolio ol{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
   .portfolio li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.4;color:#D9D6CF}
@@ -33,23 +32,22 @@
     <a class="brand" href="index.html"><span class="dot"></span>AI Engineer у 2027 <small>· роадмап</small></a>
     <nav class="nav">
       <a href="self-assessment.html">Самооцінка</a>
-      <a href="ai-engineer-roadmap.pdf">PDF</a>
+      <a href="reading-list.html">Що читати</a>
       <a href="https://github.com/genkovich/ai-engineer-roadmap" rel="noopener">GitHub</a>
     </nav>
   </div>
 
   <header class="hero">
     <h1>Роадмап <mark>AI Engineer</mark> у 2027</h1>
-    <p class="lead">Десять навичок у порядку, в якому їх варто вчити. Кожен жовтий вузол відкриває окремий роадмап навички з деревом тем, описами і ресурсами. Відсотки показують, у якій частці з <b>64 вакансій</b> (42 українські, 22 закордонні, листопад 2026) тему згадано.</p>
+    <p class="lead">Десять навичок у порядку, в якому їх варто вчити. Кожен жовтий вузол відкриває окремий роадмап навички з деревом тем, описами і ресурсами: документація, статті, відео, репозиторії. Якщо хочеться просто йти за списком, є <a href="reading-list.html">упорядкований список, що за чим читати</a>.</p>
     <div class="meta">
       <a class="btn primary" href="self-assessment.html">Самооцінка: де ви на карті →</a>
-      <a class="btn" href="ai-engineer-roadmap.pdf">PDF з ефіру</a>
+      <a class="btn" href="reading-list.html">Що читати: список по порядку</a>
     </div>
     <div class="legend">
       <span class="lg"><span class="sw main"></span>навичка, відкриває свій роадмап</span>
       <span class="lg"><span class="sw"></span>ключові теми навички</span>
       <span class="lg"><span class="sw opt"></span>за потреби</span>
-      <span class="lg"><span class="pct">92%</span>частка з 64 вакансій</span>
       <span class="lg">клік по темі: опис і посилання</span>
     </div>
   </header>
@@ -67,7 +65,7 @@
     <h2>Як читати карту</h2>
     <div class="cards">
       <div class="card"><h4>Порядок, не пріоритет</h4><p>Карта йде згори вниз: від того, як ви працюєте з агентом, до системи в проді. Кожен крок спирається на попередні, тому починати варто з першого незакритого, а не з найцікавішого.</p></div>
-      <div class="card"><h4>Відсотки</h4><p>Частка вакансій, де тему згадано будь-де у вимогах, разом із nice-to-have. Вибірка невелика, за місяць цифри будуть інші: дивіться на порядок величин, не на одиниці.</p></div>
+      <div class="card"><h4>Глибина у роадмапах навичок</h4><p>Головна карта навмисно коротка. Назви інструментів, бібліотек, протоколів і метрик живуть у роадмапі кожної навички: там кожен вузол має опис, пояснення навіщо і підбірку перевірених посилань.</p></div>
       <div class="card"><h4>«Вмію» означає «робив»</h4><p>На реальній задачі, де щось могло зламатись. Прочитали статтю чи подивились ефір: поки що це не закритий вузол. Перевірити себе чесно можна у <a href="self-assessment.html">самооцінці</a>.</p></div>
     </div>
   </section>
@@ -75,15 +73,15 @@
   <section class="block">
     <h2>Чого в карті немає, і чому</h2>
     <div class="cards">
-      <div class="card"><h4>Класичний ML: 27%</h4><p>Переважно українські вакансії (36% проти 9% у світі), де роль AI Engineer змішано з ML Engineer: PyTorch, тренування моделей, feature engineering. Туди йдіть свідомо, це інша карта.</p></div>
-      <div class="card"><h4>Fine-tuning: 25%</h4><p>Згадують рідко, здебільшого як бажане. Для більшості продуктових задач спершу вичерпують контекст, RAG і evals.</p></div>
-      <div class="card"><h4>Сертифікати, Kaggle, статті</h4><p>У вибірці не зустрілись. Ринок просить результат: хоча б один AI-воркфлоу чи система, що працює в проді або CI без щоденного нагляду.</p></div>
+      <div class="card"><h4>Класичний ML</h4><p>PyTorch, тренування моделей, feature engineering: це роль ML Engineer, яку часто змішують з AI Engineer. Туди йдіть свідомо, це інша карта.</p></div>
+      <div class="card"><h4>Fine-tuning</h4><p>Для більшості продуктових задач спершу вичерпують контекст, RAG і evals, і лише потім донавчають модель. Тому тут він згаданий лише як відгалуження від RAG.</p></div>
+      <div class="card"><h4>Сертифікати, Kaggle, статті</h4><p>Самі по собі нічого не доводять. Доказ один: хоча б один AI-воркфлоу чи система, що працює в проді або CI без щоденного нагляду.</p></div>
     </div>
   </section>
 
   <section class="block portfolio" id="portfolio">
     <h2>Коли карта закрита: три артефакти у відкритий доступ</h2>
-    <p>Саме такі артефакти вакансії просять дослівно: багаторазові skills, промпти, схеми тулів, набори evals, MCP-сервери і хоча б один інцидент, про який ви можете розповісти.</p>
+    <p>Те, що найкраще показує досвід: багаторазові skills, промпти, схеми тулів, набори evals, MCP-сервери і хоча б один інцидент, про який ви можете розповісти.</p>
     <ol>
       <li><b>Репо з evals і трейсами</b>Видно, що ви перевіряєте агента не на око.</li>
       <li><b>MCP-сервер до чогось корисного</b>Трекер задач чи база, якою самі користуєтесь.</li>
@@ -92,8 +90,8 @@
   </section>
 
   <footer>
-    <span>Кирило Сулімовський · ефір «AI Engineer у 2027» · вибірка 64 вакансії, листопад 2026</span>
-    <span><a href="self-assessment.html">самооцінка</a> · <a href="ai-engineer-roadmap.pdf">PDF</a></span>
+    <span>Кирило Сулімовський · ефір «AI Engineer у 2027»</span>
+    <span><a href="self-assessment.html">самооцінка</a> · <a href="reading-list.html">що читати</a></span>
   </footer>
 </div>
 <script src="assets/data/skills.js"></script>
@@ -105,7 +103,7 @@
   var g=document.getElementById('skills-grid');
   window.SKILLS.forEach(function(s,i){
     var a=document.createElement('a');a.href='skills/'+s.slug+'.html';
-    a.innerHTML='<span class="n">'+(i+1)+'</span><span><b></b><small></small></span>'+(s.pct!=null?'<span class="pct">'+s.pct+'%</span>':'');
+    a.innerHTML='<span class="n">'+(i+1)+'</span><span><b></b><small></small></span>';
     a.querySelector('b').textContent=s.title;a.querySelector('small').textContent=s.short;
     g.appendChild(a);
   });

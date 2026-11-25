@@ -39,7 +39,6 @@
     var inner='<span class="st" aria-hidden="true"></span>';
     if(n.kicker)inner+='<span class="kicker">'+esc(n.kicker)+'</span>';
     inner+='<span class="lbl">'+esc(n.label)+'</span>';
-    if(n.pct!=null)inner+='<span class="pct">'+esc(n.pct)+'%</span>';
     if(n.items&&n.items.length)inner+='<ul class="items">'+n.items.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul>';
     if(n.go)inner+='<span class="go">'+esc(n.go)+'</span>';
     e.innerHTML=inner;
@@ -172,6 +171,25 @@
     if(data.end){var e=el('div','t-end');var a=el('a','node end');a.href=data.end.href;a.innerHTML='<span class="lbl">'+esc(data.end.label)+'</span>';e.appendChild(a);spine.appendChild(e);}
   }
 
+  /* ---------- resources grouped by type ---------- */
+  var KINDS=[['doc','Документація'],['article','Стаття'],['video','Відео'],['github','GitHub'],['course','Курс/книга'],['post','Пост']];
+  var KIND_NAME={};KINDS.forEach(function(k){KIND_NAME[k[0]]=k[1];});
+  function domainOf(u){try{return u.replace(/^https?:\/\/(www\.)?/,'').split(/[/?#]/)[0];}catch(e){return '';}}
+  function sourceOf(l){if(l.s)return l.s;var d=domainOf(l.u);if(/youtube\.com|youtu\.be/.test(d))return 'YouTube';if(/^t\.me$/.test(d))return 'Telegram';return d;}
+  function renderLinks(links){
+    var by={};links.forEach(function(l){var k=KIND_NAME[l.k]?l.k:'article';(by[k]=by[k]||[]).push(l);});
+    var html='<h4>Де читати і дивитись <span class="cnt">'+links.length+'</span></h4><div class="res-groups">';
+    KINDS.forEach(function(kk){
+      var k=kk[0],list=by[k];if(!list)return;
+      html+='<div class="res-group"><h5><span class="rk '+k+'">'+esc(kk[1])+'</span></h5><ul class="res">'+list.map(function(l){
+        var meta=esc(sourceOf(l))+(l.y?' · '+esc(l.y):'');
+        return '<li><a href="'+esc(l.u)+'" target="_blank" rel="noopener"><span class="rt">'+esc(l.t)+'</span><small>'+meta+'</small>'+(l.w?'<em>'+esc(l.w)+'</em>':'')+'</a></li>';
+      }).join('')+'</ul></div>';
+    });
+    return html+'</div>';
+  }
+  window.RoadmapLinks={render:renderLinks,kinds:KINDS,sourceOf:sourceOf};
+
   /* ---------- drawer ---------- */
   function buildDrawer(ctx){
     var bg=el('div','drawer-bg'),d=el('aside','drawer');
@@ -184,12 +202,12 @@
     document.addEventListener('keydown',function(e){if(e.key==='Escape'){close();ctx.closeCtx&&ctx.closeCtx();}});
     ctx.openDrawer=function(n){
       h3.textContent=n.label;
-      var html='<div class="d-tags"><span class="tag '+n.type+'">'+esc(TYPE_NAMES[n.type]||n.type)+'</span>'+(n.pct!=null?'<span class="tag">'+n.pct+'% вакансій</span>':'')+(n.parent?'<span class="tag">'+esc(n.parent.label)+'</span>':'')+'</div>';
+      var html='<div class="d-tags"><span class="tag '+n.type+'">'+esc(TYPE_NAMES[n.type]||n.type)+'</span>'+(n.parent?'<span class="tag">'+esc(n.parent.label)+'</span>':'')+'</div>';
       if(n.desc)html+='<h4>Що це</h4><p>'+esc(n.desc)+'</p>';
       if(n.why)html+='<h4>Навіщо AI-інженеру</h4><p class="why">'+esc(n.why)+'</p>';
       if(n.children&&n.children.length&&!n.items)html+='<h4>Всередині</h4><div class="d-kids">'+n.children.map(function(c){return '<span>'+esc(c.label)+'</span>';}).join('')+'</div>';
       if(n.items&&n.items.length)html+='<h4>Теми</h4><div class="d-kids">'+n.items.map(function(c){return '<span>'+esc(c)+'</span>';}).join('')+'</div>';
-      if(n.links&&n.links.length)html+='<h4>Де читати</h4><ul class="res">'+n.links.map(function(l){return '<li><a href="'+esc(l.u)+'" target="_blank" rel="noopener">'+esc(l.t)+'<small>'+esc(l.u.replace(/^https?:\/\//,''))+'</small></a></li>';}).join('')+'</ul>';
+      if(n.links&&n.links.length)html+=renderLinks(n.links);
       if(n.href)html+='<a class="btn primary d-open" href="'+esc(n.href)+'">Відкрити роадмап навички →</a>';
       if(n.type!=='root'&&n.type!=='end'&&ctx.statusKey){
         html+='<h4>Статус</h4><div class="status">'+Object.keys(STATUSES).map(function(s){return '<button type="button" data-s="'+s+'">'+STATUSES[s]+'</button>';}).join('')+'</div><p class="hint">Статус зберігається у цьому браузері. Правий клік на вузлі дає те саме меню.</p>';
