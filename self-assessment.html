@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Самооцінка з 10 питань · Роадмап AI Engineer у 2027</title>
+<meta name="description" content="Десять питань, щоб зрозуміти, де ви на роадмапі AI Engineer у 2027. Три варіанти на кожне, сума від 0 до 20, результат рахується одразу на сторінці і веде на роадмап потрібної навички.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%273%27 y=%273%27 width=%2726%27 height=%2726%27 rx=%276%27 fill=%27%23FFD84D%27 stroke=%27%232A2825%27 stroke-width=%273%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.quiz{padding-top:6px}
+.part-head h2{font-weight:800;font-size:32px;line-height:1.05;letter-spacing:-.025em}
+.part-head .sub{color:var(--ink-2);margin-top:8px;font-size:15.5px;max-width:680px}
+.part-head .sub a{color:var(--ink)}
+.chip{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 8px;border-radius:9px;background:var(--accent);border:2px solid var(--line);color:var(--accent-ink);font-family:var(--mono);font-weight:700;font-size:15px;line-height:1;flex:none}
+.chip.ghost{background:var(--paper)}
+.chip.sm{min-width:28px;height:28px;font-size:13px}
+.rule-box{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:18px}
+.rule-box p{font-size:14.5px;color:var(--ink);line-height:1.45}
+.qlist{margin-top:18px}
+.q{background:var(--paper);border:2px solid var(--frame);border-radius:14px;padding:14px 16px 10px;margin-bottom:10px}
+.q .qh{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.q .qt{font-weight:700;font-size:15.5px;line-height:1.3;color:var(--ink);padding-top:5px}
+.q .qt .step{display:block;font-family:var(--mono);font-weight:500;font-size:10.5px;color:var(--dim);letter-spacing:.06em;margin-top:4px;text-transform:uppercase;text-decoration:none}
+.q .qt .step:hover{color:var(--ink)}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:7px 10px 7px 8px;border-radius:9px;border:1.5px solid transparent;cursor:pointer;font-size:14px;line-height:1.4;color:var(--ink-2);position:relative}
+.opt:hover{background:var(--bg)}
+.opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opt .v{flex:none;width:24px;height:24px;border-radius:7px;border:1.5px solid var(--frame);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:12px;color:var(--dim);background:var(--paper);margin-top:1px}
+.opt:has(input:checked){background:var(--accent-soft);border-color:var(--line);color:var(--ink)}
+.opt:has(input:checked) .v{background:var(--accent);border-color:var(--line);color:var(--accent-ink)}
+.opt input:focus-visible ~ .v{outline:2px solid var(--prog);outline-offset:2px}
+.score{position:sticky;bottom:12px;margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:16px;box-shadow:0 12px 30px rgba(16,21,31,.22)}
+.score .sv{font-family:var(--mono);font-weight:700;font-size:30px;line-height:1;white-space:nowrap}
+.score .sv small{font-size:14px;color:#9A9384;margin-left:2px}
+.score .st{font-size:14px;line-height:1.35;color:#D6D8E8}
+.score .st b{color:#fff}
+.score .reset{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#C9C3B4;background:none;border:1px solid #5a5650;border-radius:7px;padding:6px 10px;cursor:pointer}
+.result{margin-top:14px;display:none;background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:16px 18px}
+.result.show{display:block}
+.result .kicker{display:block;font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.result h4{font-weight:800;font-size:18px;color:var(--ink);margin-bottom:6px}
+.result p{font-size:14.5px;color:var(--ink-2);line-height:1.45;margin-top:6px}
+.result .btn{margin-top:12px}
+.key{margin-top:22px}
+.key h3{font-weight:800;font-size:19px;letter-spacing:-.015em;color:var(--ink);margin-bottom:10px}
+.bands{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.band{background:var(--paper);border:2px solid var(--frame);border-radius:12px;padding:14px 14px 12px}
+.band .bn{font-family:var(--mono);font-weight:700;font-size:20px;color:var(--accent-deep);letter-spacing:-.02em}
+.band h4{font-weight:700;font-size:15px;color:var(--ink);margin:4px 0 6px;line-height:1.25}
+.band p{font-size:13.5px;color:var(--ink-2);line-height:1.42}
+.band p a{color:var(--ink)}
+.key-note{margin-top:12px;font-size:13.5px;color:var(--ink-2);background:var(--beige);border-radius:10px;padding:10px 14px}
+@media (max-width:760px){.bands{grid-template-columns:1fr}.score{flex-wrap:wrap}.score .reset{margin-left:0}.part-head h2{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap-narrow">
+  <div class="topbar">
+    <a class="brand" href="index.html"><span class="dot"></span>AI Engineer у 2027 <small>· роадмап</small></a>
+    <nav class="nav">
+      <a href="index.html">Головний роадмап</a>
+      <a href="ai-engineer-roadmap.pdf">PDF</a>
+    </nav>
+  </div>
+  <div class="crumbs"><a href="index.html">Роадмап AI Engineer</a> <span>/</span> <span>Самооцінка</span></div>
+<section class="quiz" id="self">
+  <div class="part-head">
+    
+    <div>
+      <h2>Самооцінка з 10 питань: де ви зараз</h2>
+      <p class="sub">Питання йдуть у тому ж порядку, що й навички на <a href="index.html">головному роадмапі</a>. У кожному три варіанти, вони дають 0, 1 або 2 бали. Обирайте той, що описує, як ви робили насправді, а не як знаєте, що треба.</p>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <span class="chip ghost sm">!</span>
+    <p><b>«Вмію» означає «робив на реальній задачі»,</b> де щось могло зламатись і, швидше за все, ламалось. Прочитали статтю, подивились доповідь, слухали цей ефір: поки що це 0 балів. Крім вас, результат ніхто не перевірятиме, тому вигравати тут нема в кого.</p>
+  </div>
+
+  <form class="qlist" id="quiz" autocomplete="off">
+
+    <div class="q">
+      <div class="qh"><span class="chip">1</span><div class="qt">Як ви робили останню задачу зі спринту?<a class="step" href="skills/agentic-workflow.html">→ крок 1 · метод роботи з агентами · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q1" value="0"><span class="v">0</span><span>Писав код сам. Асистент хіба підказував рядки, або не користувався ним узагалі.</span></label>
+        <label class="opt"><input type="radio" name="q1" value="1"><span class="v">1</span><span>Просив агента написати код з опису задачі, потім правив за ним руками, поки не запрацювало.</span></label>
+        <label class="opt"><input type="radio" name="q1" value="2"><span class="v">2</span><span>Спершу написав специфікацію і тест, код написав агент, а його диф я прочитав як чужий пул-реквест.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">2</span><div class="qt">Що лежить у вашому файлі інструкцій для агента (CLAUDE.md, AGENTS.md чи подібному)?<a class="step" href="skills/context.html">→ крок 2 · контекст · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q2" value="0"><span class="v">0</span><span>Файлу немає, або я не знаю, навіщо він.</span></label>
+        <label class="opt"><input type="radio" name="q2" value="1"><span class="v">1</span><span>Є, і туди дописується все, що колись пішло не так. Він росте, і скільки токенів займає, я не знаю.</span></label>
+        <label class="opt"><input type="radio" name="q2" value="2"><span class="v">2</span><span>Лише те, без чого агент помиляється. Решта в окремих файлах правил, які він читає за потреби, і я знаю, скільки токенів це коштує.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">3</span><div class="qt">Поясніть tool use кодом: як модель викликає функцію?<a class="step" href="skills/agents-mcp.html">→ крок 3 · агенти і MCP · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q3" value="0"><span class="v">0</span><span>Поясню словами, кодом не покажу.</span></label>
+        <label class="opt"><input type="radio" name="q3" value="1"><span class="v">1</span><span>Збирав агента на фреймворку (LangChain, LangGraph, Agent SDK), цикл усередині фреймворку бачив лише в документації.</span></label>
+        <label class="opt"><input type="radio" name="q3" value="2"><span class="v">2</span><span>Писав цикл руками: модель повертає «виклич цю функцію з такими аргументами», мій код виконує й віддає результат назад, і так до кінця задачі.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">4</span><div class="qt">Ваш досвід з MCP, протоколом підключення інструментів до агента.<a class="step" href="skills/agents-mcp.html">→ крок 3 · агенти і MCP · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q4" value="0"><span class="v">0</span><span>Чув назву, розшифрувати зможу.</span></label>
+        <label class="opt"><input type="radio" name="q4" value="1"><span class="v">1</span><span>Підключав готові MCP-сервери до Claude Code, Cursor чи іншого клієнта.</span></label>
+        <label class="opt"><input type="radio" name="q4" value="2"><span class="v">2</span><span>Написав власний MCP-сервер до API, яким користуюся в роботі, наприклад до трекера задач, і агент ним реально працює.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">5</span><div class="qt">Як ваш код спілкується з моделлю?<a class="step" href="skills/llm-api.html">→ крок 4 · LLM API і structured outputs · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q5" value="0"><span class="v">0</span><span>Тільки через чат у браузері або через інструмент, який усе робить за мене.</span></label>
+        <label class="opt"><input type="radio" name="q5" value="1"><span class="v">1</span><span>Викликав API в скрипті чи пет-проєкті, відповідь розбирав як текст.</span></label>
+        <label class="opt"><input type="radio" name="q5" value="2"><span class="v">2</span><span>У проді: відповідь приходить за схемою (structured outputs), є ретраї, ліміти запитів і запасний варіант на випадок відмови API.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">6</span><div class="qt">Як ви дізнаєтесь, що ваш RAG ламається, і де саме: у пошуку чи в генерації?<a class="step" href="skills/rag.html">→ крок 5 · RAG · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q6" value="0"><span class="v">0</span><span>RAG не збирав.</span></label>
+        <label class="opt"><input type="radio" name="q6" value="1"><span class="v">1</span><span>Збирав, якість оцінюю на око: читаю відповіді й дивлюся, чи схоже на правду.</span></label>
+        <label class="opt"><input type="radio" name="q6" value="2"><span class="v">2</span><span>Міряю окремо: recall@k для пошуку і частку правильних відповідей для генерації, тож по цифрах видно, яка частина винна.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">7</span><div class="qt">Ви поправили промпт під один кейс. Як дізнаєтесь, що решта не зламалась?<a class="step" href="skills/evals.html">→ крок 6 · evals · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q7" value="0"><span class="v">0</span><span>Прокликаю кілька запитів руками, решту дізнаюся від користувачів.</span></label>
+        <label class="opt"><input type="radio" name="q7" value="1"><span class="v">1</span><span>Є набір еталонних кейсів, проганяю його руками час від часу.</span></label>
+        <label class="opt"><input type="radio" name="q7" value="2"><span class="v">2</span><span>Golden dataset проганяється в CI після кожної зміни промпту і блокує мердж, якщо впали перевірки.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">8</span><div class="qt">Як виглядає найбільша LLM-логіка, яку ви тримаєте в проді?<a class="step" href="skills/orchestration.html">→ крок 7 · оркестрація · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q8" value="0"><span class="v">0</span><span>Один великий промпт. Коли ламається, не видно, на якому кроці.</span></label>
+        <label class="opt"><input type="radio" name="q8" value="1"><span class="v">1</span><span>Розкладено на кроки в коді, між кроками перевірки, наступний крок обирає код або модель свідомо.</span></label>
+        <label class="opt"><input type="radio" name="q8" value="2"><span class="v">2</span><span>Кроки з перевірками, а ще: дії, що щось змінюють, чекають на підтвердження людини, і ключ агента фізично не має прав на те, чого йому не можна.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">9</span><div class="qt">Агент учора зробив у проді щось дивне. Що ви можете побачити сьогодні?<a class="step" href="skills/production.html">→ крок 8 · прод: трейси · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q9" value="0"><span class="v">0</span><span>Нічого: логів від LLM-частини немає, або сервісу в проді ще немає.</span></label>
+        <label class="opt"><input type="radio" name="q9" value="1"><span class="v">1</span><span>Фінальну відповідь моделі в логах, без проміжних кроків.</span></label>
+        <label class="opt"><input type="radio" name="q9" value="2"><span class="v">2</span><span>Кожен промпт, кожен виклик тула й кількість токенів. Прогін можна відтворити й знайти, де він пішов не туди.</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><span class="chip">10</span><div class="qt">Скільки коштує один прогін вашого агента чи AI-фічі?<a class="step" href="skills/production.html">→ крок 8 · прод: вартість і latency · відкрити роадмап</a></div></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="q10" value="0"><span class="v">0</span><span>Не знаю.</span></label>
+        <label class="opt"><input type="radio" name="q10" value="1"><span class="v">1</span><span>Знаю приблизно, за рахунком наприкінці місяця.</span></label>
+        <label class="opt"><input type="radio" name="q10" value="2"><span class="v">2</span><span>Рахую з токенів на кожному прогоні, бачу latency і знаю, який крок найдорожчий.</span></label>
+      </div>
+    </div>
+  </form>
+
+  <div class="score no-print" id="score" aria-live="polite">
+    <div class="sv"><span id="sum">0</span><small>/ 20</small></div>
+    <div class="st" id="stxt">Відповіли на <b id="cnt">0</b> з 10. Результат зʼявиться після десятого питання.</div>
+    <button type="button" class="reset" id="reset">скинути</button>
+  </div>
+  <div class="result" id="result"></div>
+
+  <div class="key">
+    <h3>Як читати суму</h3>
+    <div class="bands">
+      <div class="band">
+        <div class="bn">0-7</div>
+        <h4>Початок карти: починайте з методу</h4>
+        <p>Це нормальний результат, для цього й збирались. Не вчіть усе одразу. Беріть перші дві навички роадмапу: метод роботи з агентами і контекст. Тренувати їх можна вже завтра на будь-якій задачі зі спринту, LLM у проді для цього не потрібен. Решту карти поки не чіпайте.</p>
+      </div>
+      <div class="band">
+        <div class="bn">8-14</div>
+        <h4>Середина карти: закривайте першу прогалину</h4>
+        <p>Важить не сума, а перше питання згори, де у вас 0 чи 1. Біля кожного питання є посилання на роадмап навички: беріть його і закривайте тільки цю прогалину, бажано на робочій задачі, щоб результат було кому перевірити. Потім наступне питання.</p>
+      </div>
+      <div class="band">
+        <div class="bn">15-20</div>
+        <h4>Навички є, бракує доказів</h4>
+        <p>Ви робили майже все з карти. Тепер це треба показати. Збирайте портфоліо з трьох артефактів, які вакансії просять дослівно: репо з evals і трейсами, MCP-сервер до чогось корисного і розбір інциденту, як ваш агент зламався і як ви це знайшли. Список внизу <a href="index.html#portfolio">головного роадмапу</a>.</p>
+      </div>
+    </div>
+    <p class="key-note"><b>Сума потрібна лише для орієнтиру.</b> Порядок навчання визначає перший незакритий пункт згори, бо кожна наступна навичка на роадмапі спирається на попередні. Якщо на одному кроці два питання (3 і 4, 9 і 10), прогалиною вважайте нижчий бал з двох.</p>
+  </div>
+</section>
+
+  <footer>
+    <span>Кирило Сулімовський · ефір «AI Engineer у 2027» · вибірка 64 вакансії, листопад 2026</span>
+    <span><a href="index.html">головний роадмап</a> · <a href="ai-engineer-roadmap.pdf">PDF</a></span>
+  </footer>
+</div>
+<script>
+(function(){
+  var form=document.getElementById('quiz');
+  if(!form)return;
+  var sum=document.getElementById('sum'),cnt=document.getElementById('cnt'),stxt=document.getElementById('stxt'),res=document.getElementById('result');
+  var bands=[
+    {max:7,n:'0-7',h:'Початок карти: починайте з методу',p:'Це нормальний результат, для цього й збирались. Не вчіть усе одразу. Беріть перші дві навички роадмапу: метод роботи з агентами і контекст. Тренувати їх можна вже завтра на будь-якій задачі зі спринту, LLM у проді для цього не потрібен. Решту карти поки не чіпайте.'},
+    {max:14,n:'8-14',h:'Середина карти: закривайте першу прогалину',p:'Важить не сума, а перше питання згори, де у вас 0 чи 1. Беріть роадмап відповідної навички і закривайте тільки цю прогалину, бажано на робочій задачі, щоб результат було кому перевірити. Потім наступне питання.'},
+    {max:20,n:'15-20',h:'Навички є, бракує доказів',p:'Ви робили майже все з карти. Тепер це треба показати: репо з evals і трейсами, MCP-сервер до чогось корисного і розбір інциденту, як ваш агент зламався і як ви це знайшли.'}
+  ];
+  var skillOf={q1:['agentic-workflow','Метод роботи з агентами'],q2:['context','Контекст'],q3:['agents-mcp','Агенти, tool use і MCP'],q4:['agents-mcp','Агенти, tool use і MCP'],q5:['llm-api','LLM API і structured outputs'],q6:['rag','RAG'],q7:['evals','Evals'],q8:['orchestration','Оркестрація'],q9:['production','Прод: деплой, observability, вартість'],q10:['production','Прод: деплой, observability, вартість']};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function titleOf(q){var t=form.querySelector('[name='+q+']').closest('.q').querySelector('.qt');return t.childNodes[0].textContent.trim();}
+  function update(){
+    var total=0,answered=0,firstGap=null;
+    for(var i=1;i<=10;i++){
+      var sel=form.querySelector('input[name=q'+i+']:checked');
+      if(sel){answered++;var v=+sel.value;total+=v;if(firstGap===null&&v<2)firstGap='q'+i;}
+    }
+    sum.textContent=total;cnt.textContent=answered;
+    if(answered<10){
+      stxt.innerHTML='Відповіли на <b>'+answered+'</b> з 10. Результат зʼявиться після десятого питання.';
+      res.classList.remove('show');return;
+    }
+    var b=bands.find(function(x){return total<=x.max;});
+    stxt.innerHTML='<b>'+b.n+'</b> · '+esc(b.h);
+    var gap='';
+    if(firstGap){var s=skillOf[firstGap];gap='<p><b>Перша прогалина згори:</b> питання '+firstGap.slice(1)+' («'+esc(titleOf(firstGap))+'»). Починайте з роадмапу навички «'+esc(s[1])+'».</p><a class="btn primary" href="skills/'+s[0]+'.html">Відкрити роадмап: '+esc(s[1])+' →</a>';}
+    else{gap='<p><b>Жодної прогалини.</b> Переходьте до трьох артефактів внизу головного роадмапу.</p><a class="btn primary" href="index.html#portfolio">Три артефакти в портфоліо →</a>';}
+    res.innerHTML='<span class="kicker">ваш результат · '+total+' з 20</span><h4>'+esc(b.h)+'</h4><p>'+esc(b.p)+'</p>'+gap;
+    res.classList.add('show');
+  }
+  form.addEventListener('change',update);
+  document.getElementById('reset').addEventListener('click',function(){form.reset();update();});
+  update();
+})();
+</script>
+</body>
+</html>
